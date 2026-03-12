@@ -1,0 +1,25 @@
+qdrant_storage/
+simple_rag.ipynb
+
+.env
+.venv/
+
+__pycache__/
+*.pyc
+
+app/static/*
+test_doc.pdf
+uploads/* 
+
+sqlite_data/
+
+logs/*
+PROJECT_INFO.md
+TODO_TABLE.md
+JWT_AUTH_AND_SQL_SETUP.md
+
+docs/
+temp/
+
+# E2E / manual testing checklist (local notes)
+E2E_FLAG_TESTING_CHECKLIST.md

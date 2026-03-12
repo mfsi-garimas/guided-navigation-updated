@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "Guided Chatbot",
+    "version": "1.0",
+    "description": "A chatbot that helps automate tasks via guided steps.",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content/config.js",
+                "content/storage.js",
+                "content/dom.js",
+                "content/api.js",
+                "content/actions.js",
+                "content/chatbot_ui.js"
+            ]
+        }
+    ]
+}
