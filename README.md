@@ -1,4 +1,4 @@
-# Guided Navigation Web Extension 🤖🌐
+# Guided Navigation Web Extension
 
 Guided Navigation is a system that enables users to control and automate web interactions using a **chatbot-style interface**.
 
@@ -52,7 +52,7 @@ Backend
 * FastAPI / API routes
 
 ## Project Structure
-
+```
 guided-navigation/
 │
 │   ├── app/
@@ -76,7 +76,7 @@ guided-navigation/
 │   └── .dockerignore
 │
 └── README.md
-
+```
 
 ## Setup & Installation
 
