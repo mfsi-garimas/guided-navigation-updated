@@ -24,6 +24,7 @@ Future versions will support:
 
 ## Architecture Overview
 
+```
 User Command
 ↓
 Chrome Extension (UI + DOM Access)
@@ -35,6 +36,7 @@ LangGraph Workflow (LLM reasoning + tool orchestration)
 Action Executor
 ↓
 DOM Interaction
+```
 
 ## Tech Stack
 
