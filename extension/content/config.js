@@ -23,8 +23,3 @@ async function getBaseUrl() {
     });
   });
 }
-
-(async () => {
-  const baseUrl = await getBaseUrl();
-  console.log("Using BASE_URL:", baseUrl);
-})();

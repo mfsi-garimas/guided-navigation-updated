@@ -1,182 +1,175 @@
+# Guided Navigation Web Extension 🤖🌐
 
-# Guided-nav2.0
+Guided Navigation is a system that enables users to control and automate web interactions using a **chatbot-style interface**.
 
-# Guided-nav2.0
+Instead of manually navigating webpages, users can give **natural language commands**, and an AI-powered backend interprets them and performs actions such as clicking elements, searching content, checking checkboxes, and submitting forms.
 
-## Project Overview
-Guided-nav2.0 is an agentic, modular web automation and navigation platform. It leverages LLMs (Large Language Models) and a graph-based agent architecture to interpret user commands, automate web actions, and manage user roles and data. The project is designed for extensibility, maintainability, and integration with modern web technologies and cloud services.
+The system combines a **Chrome Extension frontend** with a **Python LangGraph-powered AI backend** to enable intelligent browser automation.
 
----
+Future versions will support: 
+- **LLM-generated JavaScript execution** – dynamically generate and embed JavaScript scripts based on user commands and execute them directly within the Chrome extension for more flexible webpage automation.
+- support **speech-based interaction**, allowing users to control webpages using voice commands.
 
 ## Features
-- Browser extension for natural language web automation
-- Backend with modular, agentic architecture (LangGraph compatible)
-- Multi-agent orchestration (interpret, multi-step, select elements, supervisor)
-- LLM integration (OpenAI, Gemini, etc.)
-- Role-based access and user management
-- Vector search and retrieval (Qdrant)
-- Message queue support (RabbitMQ, Redis)
-- Extensible, testable codebase
 
----
+* Chat-based interface for webpage interaction
+* Click buttons and links using commands
+* Search within webpages
+* Check / uncheck checkboxes
+* Fill and submit forms (login, signup, etc.)
+* AI agent decision making using **LangGraph**
+* Real-time browser automation
+* Upcoming **LLM-generated JavaScript execution**
+* Upcoming **voice-based navigation**
 
-## Installation & Setup
+## Architecture Overview
 
-### 1. Clone the Repository
-```bash
-git clone <repo-url>
-cd Guided-nav2.0
-```
+User Command
+↓
+Chrome Extension (UI + DOM Access)
+↓
+Backend API
+↓
+LangGraph Workflow (LLM reasoning + tool orchestration)
+↓
+Action Executor
+↓
+DOM Interaction
 
-### 2. Python Environment
-```bash
-python3 -m venv .venv
-source venv/bin/activate
-```
+## Tech Stack
 
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+Frontend (Extension)
 
-### 4. Environment Variables
-- Copy `.env.example` to `.env` and fill in your secrets (OpenAI, Gemini, Qdrant, RabbitMQ, Redis, etc.)
+* JavaScript
+* Chrome Extension APIs
+* HTML / CSS
 
-### 5. Start Backend Server
-```bash
-uvicorn app.main:app --reload --port 8001
-```
+Backend
 
-### 6. Frontend Extension
-- Go to your browser's extensions page
-- Enable Developer Mode
-- Load `app/extensions/` as an unpacked extension
+* Python
+* LangGraph
+* LLM integration
+* FastAPI / API routes
 
----
+## Project Structure
 
-
-## Folder Structure & Description
-
-```
-Guided-nav2.0/
-├── app/
-│   ├── agents/              # Agent classes (interprete, multi-step, select)
-│   ├── config/              # Configuration loaders (env, logging, Qdrant, RabbitMQ, Redis)
-│   ├── constants/           # Project-wide constants
-│   ├── exceptions/          # Custom exception classes and handlers
-│   ├── extensions/          # Browser extension files (content.js, manifest.json)
-│   ├── graph/               # Graph orchestration (state, graph definition)
-│   ├── llms/                # LLM client implementations (OpenAI, Gemini)
-│   ├── models/              # Data models
-│   ├── nodes/               # Node functions for graph steps (interprete, select_elements, multi_step)
-│   ├── prompts/             # Prompt templates for agents
-│   ├── repository/          # Data repositories (SQL, vector)
-│   ├── routes/              # Modular FastAPI route files (health, interprete, select_elements, multi_step, main)
-│   ├── schemas/             # Pydantic schemas for validation
-│   ├── services/            # Service layer (core, IAM, message queue)
-│   ├── tools/               # Utility tools (LLM client, config, agent tools)
-│   └── workers/             # Background workers (ingestion)
-├── .env                     # Environment variables
-├── requirements.txt         # Python dependencies
-├── Dockerfile               # Docker build file
-├── docker-compose.yml       # Docker orchestration
-├── README.md                # Project documentation
-├── LICENSE.md               # License information
-└── CONTRIBUTING.md          # Contribution guidelines
-```
-
----
-
-## Key Components
+guided-navigation/
+│
+│   ├── app/
+│   │   ├── agents/        # Agent logic
+│   │   ├── config/        # Configuration files
+│   │   ├── constants/     # Global constants
+│   │   ├── exceptions/    # Custom exceptions
+│   │   ├── graph/         # LangGraph workflows
+│   │   ├── llms/          # LLM integrations
+│   │   ├── logs/          # Logging
+│   │   ├── prompts/       # Prompt templates
+│   │   ├── routes/        # API endpoints
+│   │   ├── tools/         # Action tools for agents
+│   │   ├── __init__.py
+│   │   └── main.py        # Backend entry point
+│
+│   ├── extension/         # Chrome extension source
+│
+│   ├── .env.example
+│   ├── .gitignore
+│   └── .dockerignore
+│
+└── README.md
 
 
-### Agents (`app/agents/`)
-- **interprete_agent.py**: Interprets user commands and webpage context
-- **multi_step_agent.py**: Plans multi-step form interactions
-- **select_elements_agent.py**: Selects relevant DOM elements for actions
+## Setup & Installation
 
+1. Clone the Repository
 
-### Config (`app/config/`)
-- **env_config.py**: Loads environment variables from `.env`
-- **log_config.py**: Logging setup
+	git clone https://github.com/mfsi-garimas/guided-navigation-updated.git
+	cd guided-navigation
 
+2. Backend Setup (Python)
 
+	Create a virtual environment
 
-### Extensions (`app/extensions/`)
-- **content.js**: Main browser extension logic (DOM extraction, API calls, UI)
-- **manifest.json**: Extension manifest
+		python -m venv .venv
 
+	Activate environment
 
+		Mac/Linux:
 
-### Graph (`app/graph/`)
-- **interprete_graph.py**: Interprete agent workflow graph
-- **select_elements_graph.py**: Select elements agent workflow graph
-- **multistep_graph.py**: Multi-step agent workflow graph
-- **state.py**: Graph state management
+		source .venv/bin/activate
 
+		Windows:
 
-### Nodes (`app/nodes/`)
-- **interprete_node.py**: Node function for interprete agent
-- **select_elements_node.py**: Node function for select elements agent
-- **multi_step_node.py**: Node function for multi-step agent
+		.venv\Scripts\activate
 
+3. Install dependencies
 
-### LLMs (`app/llms/`)
-- **openai_chat_client.py**: OpenAI API integration
-- **gemini_chat_client.py**: Gemini API integration
+	pip install -r requirements.txt
 
+4. Add environment variables
 
-### Prompts (`app/prompts/`)
-- **interpret_prompt.py**: Prompt templates for interpretation
-- **multi_step_prompt.py**: Prompt templates for multi-step agent
-- **select_element_prompt.py**: Prompt templates for element selection
+	cp .env.example .env
 
+5. Run backend server
 
-### Routes (`app/routes/`)
-- **health_route.py**: Health check endpoint
-- **interprete_route.py**: Interprete agent API endpoint
-- **select_elements_route.py**: Select elements agent API endpoint
-- **multi_step_route.py**: Multi-step agent API endpoint
-- **main.py**: FastAPI app entry point (includes all routers)
+	python app/main.py
 
+## Chrome Extension Setup
 
+1. Open Chrome and navigate to
 
-### Tools (`app/tools/`)
-- **llm_client.py**: LLM API wrapper
-- **interprete_agent_tools.py**: Tools for the interprete agent
-- **select_element_tools.py**: Tools for element selection
-- **config.py**: Config utilities
+chrome://extensions/
 
----
+2. Enable **Developer Mode**
 
+3. Click **Load Unpacked**
 
+4. Select the `extension` folder
+
+The extension will now be available in your browser.
+
+## Configure API Base URL
+
+The extension requires a BASE_URL to communicate with the backend API.
+
+When the extension runs for the first time, it will prompt you to enter the API base URL.
+
+Example:
+
+http://127.0.0.1:8001/api
+
+This value is stored using Chrome local storage and will be reused in future sessions.
+
+Note: The code that handles this prompt and storage is located in extension/content/config.js. You can inspect or modify it there if needed.
+
+## How to remove BASE_URL:
+
+1. Open Chrome DevTools on any webpage (where the extension runs).
+
+2. Go to the Application tab.
+
+3. Expand Storage → Extension storage → [Your Extension Name] → Local.
+
+4. Find the BASE_URL key in the right panel.
+
+5. Right-click it and choose Delete or select it and press the Delete key.
 
 ## Usage
 
-1. Start the backend server:
-	```bash
-	uvicorn app.main:app --reload
-	```
-2. Load the browser extension in your browser (see Installation step 6)
-3. Interact with the chatbot UI to automate web actions
-4. Use API endpoints for agentic workflows, retrieval, and user management
+1. Open any webpage.
+2. Click the extension icon.
+3. Enter a command in the chatbot.
 
----
+Example commands:
 
-## Testing
-- Run unit and integration tests (if available)
-- Use FastAPI docs (`/docs`) for API exploration
+```
+Go to get certified
+search for java tutorials
+login with username test and password 123
+```
 
----
+The AI agent will interpret the command and perform the action on the webpage.
 
-## Contribution
-- See `CONTRIBUTING.md` for guidelines
-- PRs and issues welcome!
+## Future Improvements
 
----
-
-## License
-- See `LICENSE.md` for details
-
----
-
+* LLM-generated JavaScript execution – dynamically generate and embed JavaScript scripts based on user commands and execute them directly within the Chrome extension for more flexible webpage automation
+* Voice-based navigation
