@@ -117,7 +117,7 @@ guided-navigation/
 
 1. Open Chrome and navigate to
 
-chrome://extensions/
+	chrome://extensions/
 
 2. Enable **Developer Mode**
 
