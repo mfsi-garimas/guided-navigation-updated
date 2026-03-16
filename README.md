@@ -82,8 +82,8 @@ guided-navigation/
 
 1. Clone the Repository
 
-	git clone https://github.com/mfsi-garimas/guided-navigation-updated.git
-	cd guided-navigation
+* git clone https://github.com/mfsi-garimas/guided-navigation-updated.git
+* cd guided-navigation
 
 2. Backend Setup (Python)
 
